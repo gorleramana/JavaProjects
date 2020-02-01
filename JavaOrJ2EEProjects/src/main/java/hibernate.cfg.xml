@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ Hibernate, Relational Persistence for Idiomatic Java ~ ~ License: 
+	GNU Lesser General Public License (LGPL), version 2.1 or later. ~ See the 
+	lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>. -->
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- It contains database specific configurations and is used to initialize 
+	SessionFactory. It provides database credentials or JNDI resource information 
+	in the hibernate configuration XML file. Dialect information is another important 
+	part of the hibernate configuration file. -->
+<hibernate-configuration>
+	<session-factory>
+
+		<property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
+		<property name="connection.url">jdbc:postgresql://localhost:5432/RamanaGorle</property> <!-- BD Mane -->
+		<property name="connection.username">RamanaGorle</property> <!-- DB User -->
+		<property name="connection.password">RamanaGorle</property> <!-- DB Password -->
+
+		<property name="connection.pool_size">1</property> <!-- Connection pool size -->
+
+		<!-- Hibernate Dialect is used to specify the type of database we are going 
+			to use. Hibernate requires this to know in advance so it is able to generate 
+			appropriate type of SQL statements based on database type. -->
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property> <!-- DB Dialect -->
+
+		<!-- *** create - every time overrides the db content, update will update 
+			the db content -->
+		<property name="hbm2ddl.auto">update</property> <!-- create / create-drop / update -->
+
+		<property name="show_sql">true</property> <!-- Show SQL in console -->
+		<property name="format_sql">true</property> <!-- Show SQL formatted -->
+
+		<!-- need to add all the dtos you want to map to db using hibernate -->
+		<mapping class="org.javabrains.practice.hibernate.dto.UserDetails" />
+		<mapping class="org.javabrains.practice.hibernate.dto.EmbeddedObjectsDTO" />
+		<mapping class="org.javabrains.practice.hibernate.dto.SavingCollectionsDTO" />
+		<mapping
+			class="org.javabrains.practice.hibernate.dto.ConfiguringCollectionsDTO" />
+		<mapping
+			class="org.javabrains.practice.hibernate.dto.ProxyObjectsAndLazyFetchingDTO" />
+		<mapping class="org.javabrains.practice.hibernate.dto.OneToOneMappingDTO" />
+		<mapping class="org.javabrains.practice.hibernate.dto.VehicleDTO" />
+		<mapping class="org.javabrains.practice.hibernate.dto.OneToManyMappingDTO" />
+
+		<mapping class="org.javabrains.practice.hibernate.dto.ManyToManyMappingDTO" />
+		<mapping class="org.javabrains.practice.hibernate.dto.VehicleDTO2" />
+
+		<mapping class="org.javabrains.practice.hibernate.dto.CascadeTypesDTO" />
+		<mapping class="org.javabrains.practice.hibernate.dto.VehicleDTO3" />
+
+		<mapping class="org.javabrains.practice.hibernate.dto.InheritanceDTO" />
+		<mapping class="org.javabrains.practice.hibernate.dto.TwoWheeler" />
+		<mapping class="org.javabrains.practice.hibernate.dto.FourWheeler" />
+
+		<mapping
+			class="org.javabrains.practice.hibernate.dto.SingleTableStrategyDTO" />
+
+		<mapping
+			class="org.javabrains.practice.hibernate.dto.TablePerClassStrategyDTO" />
+
+		<mapping class="org.javabrains.practice.hibernate.dto.InheritanceWithJoinedStrategyDTO" />
+		<mapping class="org.javabrains.practice.hibernate.dto.TwoWheeler2" />
+		<mapping class="org.javabrains.practice.hibernate.dto.FourWheeler2" />
+		
+		<mapping class="org.javabrains.practice.hibernate.dto.CRUDOperationsDTO" />
+		
+		<mapping class="org.javabrains.practice.hibernate.dto.TsPeDeDTO" />
+		
+		<!-- My app DTO's -->
+		<mapping class="org.javabrains.practice.hibernate.dto.RGAddressDTO" />
+		<mapping class="org.javabrains.practice.hibernate.dto.RGForgotPasswordDTO" />
+		<mapping class="org.javabrains.practice.hibernate.dto.RGRegisterDTO" />
+	</session-factory>
+</hibernate-configuration>
