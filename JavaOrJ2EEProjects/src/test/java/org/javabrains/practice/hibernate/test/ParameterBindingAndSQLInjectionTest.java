@@ -25,11 +25,11 @@ public class ParameterBindingAndSQLInjectionTest {
 		Session session = sf.openSession();
 		session.beginTransaction();
 		
+		String minUserId = "5 or 1=1";
 		/**
 		 * Using query - we are retrieving the table no of rows using class name not table name
 		 */
-		//Query query = session.createQuery("from TsPeDeDTO");//to get whole object
-		Query query = session.createQuery("select userName from TsPeDeDTO where");//to get only username as string
+		Query query = session.createQuery("select userName from TsPeDeDTO where userId>"+minUserId);//to get only username as string
 		/**
 		 * Pagination
 		 */
@@ -38,15 +38,13 @@ public class ParameterBindingAndSQLInjectionTest {
 		/**
 		 * you'll get list of Objects
 		 */
-		//List<TsPeDeDTO> list = (List<TsPeDeDTO>)query.list();
-		//to get only username as list
-		List<String> list = (List<String>)query.list();
+		List<TsPeDeDTO> list = (List<TsPeDeDTO>)query.list();
 		
 		session.getTransaction().commit();
 		session.close();
 		
-		for(String ts: list) {
-			System.out.println("User:"+ts);
+		for(TsPeDeDTO ts: list) {
+			System.out.println("User:"+ts.getUserName());
 		}
 	}
 }
